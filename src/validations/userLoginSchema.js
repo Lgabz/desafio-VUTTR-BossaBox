@@ -1,15 +1,10 @@
 const yup = require('./yup');
 
-const userRegisterSchema = yup.object().shape({
+const userLoginSchema = yup.object().shape({
     password:
         yup
             .string()
-            .min(5, "A senha deve possuir, no mínimo, 5 caracteres.")
             .required("O campo senha deve ser preenchido"),
-    name:
-        yup
-            .string()
-            .required("O campo nome deve ser preenchido"),
     email:
         yup
             .string()
@@ -18,5 +13,5 @@ const userRegisterSchema = yup.object().shape({
 });
 
 module.exports = {
-    userRegisterSchema
-};
+    userLoginSchema
+}
