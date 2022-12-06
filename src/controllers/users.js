@@ -78,7 +78,30 @@ const userLogin = async (req, res) => {
     }
 }
 
+const getUser = async (req, res) => {
+    
+    const { id } = req.params;
+    try {
+        
+        const user = await knex("users").where({id}).first();
+
+    if(!user){
+        return res.status(404).json("Usuário não encontrado");
+    }
+
+    return res.status(200).json({
+        id: user.id,
+        name: user.name,
+        email: user.email
+    })
+        
+    } catch (error) {
+        return res.status(400).json(error.message);
+    }
+}
+
 module.exports = {
     userRegister,
-    userLogin
+    userLogin,
+    getUser
 }
