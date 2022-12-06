@@ -1,7 +1,7 @@
 const knex = require('../database/connection');
 const jwt = require('jsonwebtoken');
 
-const loginFilter = async (req, res) => {
+const loginFilter = async (req, res, next) => {
     
     const { authorization } = req.headers;
 
