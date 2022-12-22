@@ -43,8 +43,25 @@ const createTool = async (req, res) => {
     }
 }
 
+const getTools = async (req, res) => {
+    try {
+        
+        const tools = await knex("tools").select("*")
+
+        if(!tools){
+            return res.status(400).json("Ainda não há ferramentas cadastradas.")
+        }
+
+        return res.status(200).json(tools)
+
+    } catch (error) {
+        return res.status(404).json(error.message)
+    }
+}
+
 
 
 module.exports = {
-    createTool
+    createTool,
+    getTools
 }
