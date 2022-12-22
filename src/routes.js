@@ -14,6 +14,6 @@ routes.use(loginFilter);
 routes.get('/getUser/:id', getUser);
 routes.patch('/userUpdate', userUpdate);
 
-routes.post('/createTool', createTool);
+routes.post('/Tools', createTool);
 
 module.exports = routes;
