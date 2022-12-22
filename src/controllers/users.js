@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const { userRegisterSchema } = require('../validations/userRegisterSchema');
 const { userLoginSchema } = require('../validations/userLoginSchema');
+const { userUpdateSchema } = require('../validations/userUpdateSchema');
 
 
 const userRegister = async (req, res) => {
@@ -100,8 +101,58 @@ const getUser = async (req, res) => {
     }
 }
 
+const userUpdate = async (req, res) => {
+    let { name, email, password } = req.body;
+    const { id, email: userEmail } = req.user;
+
+    const bodyFormated = {
+        name: name,
+        email: email,
+        password: password
+    };
+
+    try {
+        await userUpdateSchema.validate(bodyFormated);
+
+        const userExists = await knex('users').where({id}).first();
+        const emailExists = await knex('users').where({email}).first();
+
+        if(!userExists){
+            return res.status(400).json("Usuário não encontrado.");
+        }
+        if(emailExists && emailExists.email !== userEmail){
+            return res.status(400).json("E-mail indisponível.")
+        }
+        if(password !== ""){
+            password = await bcrypt.hash(password, 10);
+        }
+        else{
+            password = await knex('users').where({ id }).returning('password');
+        }
+
+        const updatedUser = await knex('users')
+            .where({ id })
+            .update({
+                name,
+                email,
+                password
+            })
+            .returning('*');
+        
+        if(!updatedUser){
+            return res.status(400).json("Não foi possível atualizar o usuário.")
+        }
+
+        return res.status(200).json("Usuário atualizado com sucesso.")
+    } catch (error) {
+        return res.status(404).json(error.message)
+    }
+    
+}
+
 module.exports = {
     userRegister,
     userLogin,
-    getUser
+    getUser,
+    userUpdate
 }
