@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS tools (
   title text not null,
   link text not null,
   description text not null,
-  tags text[],
+  tags text,
   tools_creator int references users(user_id)
   );
 

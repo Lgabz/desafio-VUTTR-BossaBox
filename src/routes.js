@@ -2,7 +2,7 @@ const express = require('express');
 const routes = express();
 
 const { userRegister, userLogin, getUser, userUpdate } = require('./controllers/users.js');
-const { createTool, getTools } = require('./controllers/tools.js');
+const { createTool, getTools, getToolByTag } = require('./controllers/tools.js');
 const { loginFilter } = require('./middlewares/loginFilter');
 
 
@@ -16,5 +16,6 @@ routes.patch('/userUpdate', userUpdate);
 
 routes.post('/tools', createTool);
 routes.get('/tools', getTools);
+routes.get('/tools/search', getToolByTag);
 
 module.exports = routes;

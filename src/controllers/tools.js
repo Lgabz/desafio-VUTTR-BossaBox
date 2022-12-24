@@ -1,3 +1,5 @@
+const { query } = require('express');
+const { format } = require('express/lib/response');
 const knex = require('../database/connection');
 require('dotenv').config();
 const { createToolSchema } = require('../validations/createToolSchema');
@@ -59,9 +61,26 @@ const getTools = async (req, res) => {
     }
 }
 
+const getToolByTag = async (req, res) => {
+
+    const {tag} = req.query;
+    try {
+        const tool = await knex("*").from("tools").whereLike('tags', `%${tag}%`)
+        
+        if(!tool){
+            return res.status(400).json("Não há tags relacionadas com essa pesquisa.")
+        }
+
+        return res.status(200).json(tool)
+    } catch (error) {
+        return res.status(404).json(error.message);
+    }
+}
+
 
 
 module.exports = {
     createTool,
-    getTools
+    getTools,
+    getToolByTag
 }
