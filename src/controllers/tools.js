@@ -77,10 +77,35 @@ const getToolByTag = async (req, res) => {
     }
 }
 
+const deleteTool = async (req, res) => {
+    const { id } = req.params
+
+    try {     
+        const toolExists = await knex("tools").where({id}).returning("*");
+
+        if(!toolExists){
+            return res.status(404).json("Não existe nenhuma ferramenta com este ID.");
+        }
+
+        const deleteTool = await knex("tools").where({id}).del();
+
+        if(!deleteTool){
+            return res.status(400).json("Informe o ID correto para excluir a ferramenta.")
+        }
+
+        return res.status(200).json("Ferramenta excluída.")
+
+
+    } catch (error) {
+        return res.status(400).json(error.message);
+    }
+}
+
 
 
 module.exports = {
     createTool,
     getTools,
-    getToolByTag
+    getToolByTag,
+    deleteTool
 }
