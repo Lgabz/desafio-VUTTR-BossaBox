@@ -1,5 +1,5 @@
 const { query } = require('express');
-const { format } = require('express/lib/response');
+const { format, type } = require('express/lib/response');
 const knex = require('../database/connection');
 require('dotenv').config();
 const { createToolSchema } = require('../validations/createToolSchema');
@@ -81,10 +81,12 @@ const deleteTool = async (req, res) => {
     const { id } = req.params
 
     try {     
-        const toolExists = await knex("tools").where({id}).returning("*");
-
+        const toolExists = await knex("tools").where("id", id).returning("*");
+        
         if(!toolExists){
             return res.status(404).json("Não existe nenhuma ferramenta com este ID.");
+        }else{
+            
         }
 
         const deleteTool = await knex("tools").where({id}).del();
@@ -101,11 +103,28 @@ const deleteTool = async (req, res) => {
     }
 }
 
+const getToolByUserId = async (req, res) => {
+    const { id } = req.params;
+    
+    try {
+        const tools = await knex("tools").where("tool_creator", id);
+        
+        if(!tools | tools.length == 0){
+            return res.status(404).json("Ferramentas não encontradas.")
+        }
+
+        return res.status(200).json(tools)
+    } catch (error) {
+        return res.status(400).json(error.message);
+    }
+}
+
 
 
 module.exports = {
     createTool,
     getTools,
     getToolByTag,
-    deleteTool
+    deleteTool,
+    getToolByUserId
 }
