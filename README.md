@@ -105,3 +105,19 @@ URL: http://localhost:3000/getUser/:id
 |----------|--------|-------------|------------|------------------|----------------|
 |/getUser/:id|GET| x | id | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>	"id": user_id,<br>"name": "user_name",<br>"email": "user_email"<br>}| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
 
+### Atualizar usuário
+- Nessa rota é possível atualizar parcialmente os dados do usuário.
+
+URL: http://localhost:3000/userUpdate
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/userUpdate|PATCH| Content:  JSON-Type<br><br> {<br>"name": "new_user_name",<br> "email": "new_user_email",<br>"password": "new_user_password" <br>} | x | HTTP Status Code: 200<br><br>Mensagem retornada:<br>"Usuário atualizado com sucesso!" | HTTP Status Code: 400<br><br>Mensagem retornada:<br><descrição do erro>|
+
+### Cadastro de ferramenta
+
+- Aqui o usuário pode criar uma nova ferramenta informando o título, o link, uma descrição e as tags de identificação.
+
+URL: http://localhost:3000/tools
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/tools|POST| Content:  JSON-Type<br><br> {<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"]<br>} | x | HTTP Status Code: 200<br><br>Content:  JSON-Type<br><br> {<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"],<br>"tool_creator": {<br>"name": "tool_creator_name",<br>"id": tool_creator_id }<br>} | HTTP Status Code: 400<br><br>Mensagem retornada:<br><descrição do erro>|
