@@ -29,3 +29,46 @@ Caso queira entrar em contato comigo você pode mandar me encontrar aqui:
 + Discord: Gabriel Luiz#6182
 
 ![](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)
+
+## Rodando a aplicação
+
+### Pré-requisitos
+
+- Para rodar a aplicação no seu dispositivo, você precisa de um ambiente com o NodeJs na versão 16 ou superior instalado, PostgreSQL (porta padrão) e uma plataforma para o teste das requisições, como Postman ou Insomnia. <br>
+- O banco de dados utilizado foi o PostgreSQL. Para criar o banco de dados, você pode usar as queries armazenadas no diretório `./src/schema.sql` da aplicação como modelo.<br>
+
+_Após clonar o repositório:_
+- Você também deve criar um arquivo `.env` e informar as variáveis de ambiente como é sugerido no diretório `.env.example` para que a API consiga se conectar corretamente ao banco de dados.
+
+### Instalando a aplicação
+
+Clonando o repositório
+```
+$ git clone git@github.com:Lgabz/desafio-VUTTR-BossaBox.git
+
+$ cd desafio-VUTTR-BossaBox
+```
+Instalando as dependências<br>
+```
+$ yarn
+```
+ou
+```
+$ npm install
+```
+
+Rodando a aplicação<br>
+
+Com o banco de dados já criado e as dependências instaladas, agora você pode rodar o server da aplicação
+```
+$ yarn dev
+```
+ou
+```
+$ npm run dev
+```
+
+### Rotas
+
+Essa é a URL base da aplicação: http://localhost:3000/
+
