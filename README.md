@@ -42,13 +42,13 @@ _Após clonar o repositório:_
 
 ### Instalando a aplicação
 
-Clonando o repositório
+**Clonando o repositório**
 ```
 $ git clone git@github.com:Lgabz/desafio-VUTTR-BossaBox.git
 
 $ cd desafio-VUTTR-BossaBox
 ```
-Instalando as dependências<br>
+**Instalando as dependências**<br>
 ```
 $ yarn
 ```
@@ -57,7 +57,7 @@ ou
 $ npm install
 ```
 
-Rodando a aplicação<br>
+**Rodando o server da aplicação**<br>
 
 Com o banco de dados já criado e as dependências instaladas, agora você pode rodar o server da aplicação
 ```
@@ -68,7 +68,40 @@ ou
 $ npm run dev
 ```
 
-### Rotas
+## Rotas
 
 Essa é a URL base da aplicação: http://localhost:3000/
+
+### Cadastro de usuário
+
+- É nessa rota que o usuário deve fazer o seu cadastro.
+
+URL: http://localhost:3000/userSignIn
+
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/userSignIn|POST| Content:  JSON-Type<br><br> {<br>"name": "user_name",<br> "email": "user_email",<br>"password": "user_password" <br>} | x | HTTP Status Code: 200<br><br>Mensagem retornada:<br>"Cadastro concluído com sucesso!" | HTTP Status Code: 400<br><br>Mensagem retornada:<br><descrição do erro>|
+
+### Login do usuário
+
+URL: http://localhost:3000/userLogin
+
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/userLogin|POST| Content:  JSON-Type<br><br> {<br>"email": "user_email",<br>"password": "user_password" <br>} | x | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>	"id": user_id,<br>"user": "user_name",<br>"token": "Token de autenticação"<br>}| HTTP Status Code: 400<br><br>Mensagem retornada:<br><descrição do erro>|
+
+### Atenção!
+```
+A partir desse ponto todas as rotas devem receber o Token de Autenticação em seu cabeçalho.
+```
+
+### Busca por usuário
+- Nessa rota é possível fazer uma busca por usuários através do seu ID.
+
+URL: http://localhost:3000/getUser/:id
+> EX: http://localhost:3000/getUser/3
+
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/getUser/:id|GET| x | id | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>	"id": user_id,<br>"name": "user_name",<br>"email": "user_email"<br>}| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
 
