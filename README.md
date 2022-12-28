@@ -121,3 +121,40 @@ URL: http://localhost:3000/tools
 | ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
 |----------|--------|-------------|------------|------------------|----------------|
 |/tools|POST| Content:  JSON-Type<br><br> {<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"]<br>} | x | HTTP Status Code: 200<br><br>Content:  JSON-Type<br><br> {<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"],<br>"tool_creator": {<br>"name": "tool_creator_name",<br>"id": tool_creator_id }<br>} | HTTP Status Code: 400<br><br>Mensagem retornada:<br><descrição do erro>|
+
+### Buscar todas as ferramentas
+- Nessa rota, todas as ferramentas cadastradas são retornadas.
+
+URL:http://localhost:3000/tools
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/tools/:id|GET| x | x | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>"id":tool_id,<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"],<br>"tool_creator": tool_creator_id<br>}| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
+
+### Buscar ferramenta por tags
+URL: http://localhost:3000/tools/search
+> EX: http://localhost:3000/tools/search?tag=node
+
+URL:http://localhost:3000/tools
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/tools/search|GET| x | tags=tag_name | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>"id":tool_id,<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"],<br>"tool_creator": tool_creator_id<br>}| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
+
+### Deletar ferramenta
+- Nessa rota, é possível deletar uma ferramenta através do seu ID.
+
+URL: http://localhost:3000/tools/:id
+> EX: http://localhost:3000/tools/5
+
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/tools/:id|DELETE| x | id | HTTP Status Code: 200<br><br> Mensagem retornada:<br>"Ferramenta excluída."| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
+
+### Buscar ferramenta através do ID do usuário
+
+URL: http://localhost:3000/tools/:id
+> EX: http://localhost:3000/tools/3
+
+| ENDPOINT | Method | Body Params | URL Params | Success Response | Error Response |
+|----------|--------|-------------|------------|------------------|----------------|
+|/tools/:id|GET| x | id | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>"id":tool_id,<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"],<br>"tool_creator": tool_creator_id<br>}| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
+
