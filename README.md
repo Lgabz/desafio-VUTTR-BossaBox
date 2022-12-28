@@ -22,7 +22,7 @@ Tomei a liberdade de acrescentar algumas features, como:
 + Alterar dados do usuário
 + Buscar ferramentas pelo ID do usuário
 
-## Contatos
+## <a id="contatos">Contatos</a>
 Caso queira entrar em contato comigo você pode mandar me encontrar aqui:
 + E-mail: gabrielluizsouzavieira@gmail.com
 + LinkedIn: https://www.linkedin.com/in/gabrielluiz000/<br>
@@ -158,3 +158,12 @@ URL: http://localhost:3000/tools/:id
 |----------|--------|-------------|------------|------------------|----------------|
 |/tools/:id|GET| x | id | HTTP Status Code: 200<br><br> Content:  JSON-Type<br><br>{<br>"id":tool_id,<br>"title": "tool_title",<br>"link": "tool_link",<br>"description": "tool_description",<br>"tags": ["tool_tags_array"],<br>"tool_creator": tool_creator_id<br>}| HTTP Status Code: 400<br><br>Mensagem retornada: <descrição do erro>|
 
+## Observações e possíveis melhorias
+Aqui estão algumas observações sobre o que a aplicação ainda pode melhorar, erros a serem corrigidos e possíveis implementações futuras.
+
+- O deploy da aplicação ainda não foi construído.
+- Implementar uma nova feature para excluir usuários.
+- Melhoria na feature `Atualização de Usuários`: exigir autenticação de senhas.
+- Optimizar busca de ferramentas por tags.
+
+VocÊ possui alguma sugestão, comentário ou ideia de implementação ou aplicação? [Fique à vontade para entrar em contato comigo!](#contatos) 
