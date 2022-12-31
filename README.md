@@ -49,10 +49,7 @@ $ git clone git@github.com:Lgabz/desafio-VUTTR-BossaBox.git
 $ cd desafio-VUTTR-BossaBox
 ```
 **Instalando as dependências**<br>
-```
-$ yarn
-```
-ou
+
 ```
 $ npm install
 ```
@@ -60,10 +57,6 @@ $ npm install
 **Rodando o server da aplicação**<br>
 
 Com o banco de dados já criado e as dependências instaladas, agora você pode rodar o server da aplicação
-```
-$ yarn dev
-```
-ou
 ```
 $ npm run dev
 ```
